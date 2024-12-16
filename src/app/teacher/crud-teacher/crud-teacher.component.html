@@ -1,0 +1,37 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Usuario</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <button (click)="editUser(user)">Editar</button>
+        <button (click)="deleteUser(user.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Agregar o Editar Usuario</h3>
+<form (ngSubmit)="saveUser()">
+  <label>Nombre:</label>
+  <input [(ngModel)]="currentUser.name" name="name" required />
+
+  <label>Usuario:</label>
+  <input [(ngModel)]="currentUser.username" name="username" required />
+
+  <label>Email:</label>
+  <input [(ngModel)]="currentUser.email" name="email" required />
+
+  <button type="submit">{{ currentUser.id ? 'Actualizar' : 'Agregar' }}</button>
+</form>

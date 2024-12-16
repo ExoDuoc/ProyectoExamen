@@ -1,0 +1,16 @@
+{
+  "alumnos": [
+    {
+      "id": "2",
+      "nombre": "Ana López asdkasd",
+      "correo": "ana@example.com",
+      "seccion": "B"
+    },
+    {
+      "id": "0bd5",
+      "nombre": "camil",
+      "correo": "dsd",
+      "seccion": "1233"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+    "alumnos": [
+      { "id": 1, "nombre": "Juan Pérez", "correo": "juan@example.com", "seccion": "A" },
+      { "id": 2, "nombre": "Ana López", "correo": "ana@example.com", "seccion": "B" }
+    ]
+  }
+  

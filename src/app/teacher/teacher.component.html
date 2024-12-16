@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">BIENVENIDO DOCENTE</ion-title>
+    <button (click)="logout()">Cerrar Sesión</button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Asistencia en línea
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1>Toma de Asistencia por Sección</h1>
+  
+  <ion-item>
+    <ion-input [(ngModel)]="inputText" placeholder="Introduce el número de la sección"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="generateQR()">Generar QR</ion-button>
+
+  <div *ngIf="qrCodeData">
+    <qrcode [qrdata]="qrCodeData" [width]="400"></qrcode>
+  </div>
+
+
+
+
+  <h1>Gestión de Alumnos</h1>
+
+   <!-- Tabla o lista de alumnos -->
+   <ion-list>
+    <ion-item *ngFor="let alumno of alumnos">
+      <ion-label>
+        <h2>{{ alumno.nombre }}</h2>
+        <p>Correo: {{ alumno.correo }}</p>
+        <p>Sección: {{ alumno.seccion }}</p>
+      </ion-label>
+
+      <!-- Botón Editar -->
+      <ion-button (click)="editarAlumno(alumno)" color="tertiary">Editar</ion-button>
+      
+      <!-- Botón Eliminar -->
+      <ion-button 
+        (click)="alumno.id ? eliminarAlumno(alumno.id) : null" 
+        color="danger" 
+        [disabled]="!alumno.id">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Formulario para agregar o editar -->
+  <ion-header>
+    <h1>{{ nuevoAlumno.id ? 'Editar Alumno' : 'Agregar Alumno' }}</h1>
+  </ion-header>
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="nuevoAlumno.nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Correo</ion-label>
+    <ion-input [(ngModel)]="nuevoAlumno.correo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Sección</ion-label>
+    <ion-input [(ngModel)]="nuevoAlumno.seccion"></ion-input>
+  </ion-item>
+
+  <!-- Botones de acción -->
+  <ion-button expand="full" (click)="nuevoAlumno.id ? actualizarAlumno() : agregarAlumno()" color="primary">
+    {{ nuevoAlumno.id ? 'Actualizar Alumno' : 'Agregar Alumno' }}
+  </ion-button>
+
+</ion-content>
